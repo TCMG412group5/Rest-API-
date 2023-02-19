@@ -39,6 +39,31 @@ def get_md5(data = ""):
 # @app.errorhandler(405)
 # def method_not_allowed(error):
 #     return "", 405
-    
+@app.route("/is-prime", methods=["GET"])
+@app.route("/is-prime/", methods=["GET"])
+@app.route("/is-prime/<path:data>", methods=["GET"])
+def get_isprime(data = ""):
+    primecheck = True
+    if data == "":
+        primenumber = None
+        primecheck = "No input provided"
+    else:
+        primenumber = int(data)
+        if primenumber > 1:
+            for i in range(2, int(primenumber**0.5)+1 ):
+                if primenumber % i == 0:
+                    primecheck = False
+                    break
+                else:
+                    primecheck = True
+        else:
+            primecheck = False
+    return jsonify({"input:": primenumber, "output:" : primecheck}), 200
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
