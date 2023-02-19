@@ -1,5 +1,5 @@
 # REST API Project :computer:
-> :exclamation::exclamation::exclamation: **NOTICE: In order for /slack-alert to work, the web_hook.txt must be updated with the webhook URL. I included it in the Canvas comments for the submission. I didn't include it in the repo for security reasons (and because Slack actively scans for webhooks URLs and revokes them)**. :exclamation::exclamation::exclamation:
+> :exclamation::exclamation::exclamation: **NOTICE: In order for /slack-alert to work, the web_hook.txt must be updated with the webhook URL. We should have included it in the Canvas comments for the submission (if we didn't please message us in the group-5 chat). We didn't include it in the repo for security reasons (and because Slack actively scans for webhooks URLs and revokes them)**. :exclamation::exclamation::exclamation:
 
 This repo will be used for the rest of the semester.
 
