@@ -3,7 +3,7 @@
 
 This repo will be used for the rest of the semester.
 
-##Instructions
+## Instructions
 To access the endpoints, run the Flask.py program using `python3 Flask.py`.  Then, using a browser or a program like [Postman](https://www.postman.com/ "Postman"), type this URL http://localhost:5000/[Endpoint]/[Argument].
 
 ## Endpoints:
