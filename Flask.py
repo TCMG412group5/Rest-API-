@@ -1,44 +1,34 @@
 # If Flask is not installed, run this command: pip install Flask
-
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from hashlib import md5
+import requests
 
 app = Flask(__name__)
 
+
+# Default route if no endpoint is provided; returns "Hello, world!"
 @app.route("/")
 def hello_world():
     return "Hello, World!"
 
+
 # Route for the /md5 endpoint
-# The 3 routes are to account for no parameters passed
+# The 2 other routes are to account for no parameters passed
 @app.route("/md5", methods=["GET"])
 @app.route("/md5/", methods=["GET"])
 @app.route("/md5/<path:data>", methods=["GET"])
-def get_md5(data = ""):
-    # Test cases to consider:
-    # 1) What happens if a space is in the string passed? 
-    # A: It is automatically converted to %20% in the browser
-    # 2) What happens if the GET method is not used?
-    # A: A 405 error is raised
-    # 3) What happens if a non-string is passed?
-    # A: It is still treated like a string and a md5 hash is returned
-    # 4) What happens if a special character is passed?
-    # A: It is passed as a string and a md5 hash of the special character is returned
-    # 5) What happens if nothing is passed?
-    # A: A JSON object is returned with {"md5_hash": null}
-    # 6) What happens if a / is used in the middle of the string?
-    # A: The / is treated as a string and the md5 hash is returned
-    # 7) What happens if a / is present at the beginning of the argument?
-    # A: 
+def get_md5(data=""):
+    # If an endpoint is provided with no data, return a value of None
     if data == "":
         md5_hash = None
+
+    # Otherwise, use the MD5 algorithm on the provided data
     else:
         md5_hash = md5(data.encode()).hexdigest()
     return jsonify({"md5_hash": md5_hash}), 200
 
-# @app.errorhandler(405)
-# def method_not_allowed(error):
-#     return "", 405
+
+# Route for the /is-prime endpoint
 @app.route("/is-prime", methods=["GET"])
 @app.route("/is-prime/", methods=["GET"])
 @app.route("/is-prime/<path:data>", methods=["GET"])
@@ -61,9 +51,35 @@ def get_isprime(data = ""):
     return jsonify({"input:": primenumber, "output:" : primecheck}), 200
 
 
+# Route for the /slack-alert endpoint
+# The 2 other routes are to account for no parameters passed
+@app.route("/slack-alert", methods=["GET"])
+@app.route("/slack-alert/", methods=["GET"])
+@app.route("/slack-alert/<string:data>", methods=["GET"])
+def slack_alert(data=""):
+    # Returns a 400 error if there's no input
+    if data == "":
+        return jsonify({"message_sent": False}), 400
+
+    else:
+        # Uses the webhook url from web_hook.txt
+        slack_webhook = open("web_hook.txt", "r").read().replace('\n', '')
+        message = str({"text": data})
+
+        # Sends a post request to the webhook url with the message payload
+        response = requests.post(slack_webhook, data=message)
+
+        # If a 200 code with an ok message is returned, return a JSON with
+        # {"message_sent": True}
+        if response.status_code == 200 and response.text == "ok":
+            return jsonify({"message_sent": True}), 200
+
+        # If anything else is returned, return a JSON with
+        # {"message_sent": False}
+        else:
+            return jsonify({"message_sent": False}), 400
 
 
-
-
+# Runs the Flask application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
