@@ -79,7 +79,7 @@ def slack_alert(data=""):
         else:
             return jsonify({"message_sent": False}), 400
        #Route for factorial 
-@app.route("/Fact/<int:num>",methods=['GET'])
+@app.route("/factorial/<int:num>",methods=['GET'])
 def factorial(num):
     factorial = 1 
     for i in range(1,num +1):
@@ -87,7 +87,7 @@ def factorial(num):
         
     return jsonify({'input' : num ,'output' : factorial })
 #Route for fib seqeunce 
-@app.route("/Fib/<int:num>",methods=['GET'])
+@app.route("/fibonacci/<int:num>",methods=['GET'])
 def fib(num):
     l = [] 
     a = 0
