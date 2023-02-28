@@ -96,4 +96,4 @@ def fib(num):
 
 # Runs the Flask application
 if __name__ == '__main__':
-    app.run()
+    app.run(port=4000)
