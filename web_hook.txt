@@ -1,1 +1,1 @@
-[Insert webhook URL here]
+[Insert Webhook Here]
