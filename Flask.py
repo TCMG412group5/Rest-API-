@@ -78,7 +78,8 @@ def slack_alert(data=""):
         # {"message_sent": False}
         else:
             return jsonify({"message_sent": False}), 400
-       #Route for factorial 
+            
+#Route for factorial 
 @app.route("/factorial/<int:num>",methods=['GET'])
 def factorial(num):
     factorial = 1 
@@ -86,6 +87,7 @@ def factorial(num):
         factorial = factorial*i
         
     return jsonify({'input' : num ,'output' : factorial })
+
 #Route for fib seqeunce 
 @app.route("/fibonacci/<int:num>",methods=['GET'])
 def fib(num):
@@ -94,8 +96,7 @@ def fib(num):
     b =1
     while a <= num:
         l.append(a)
-        a,b= b,a+b
-            
+        a,b= b,a+b            
     return jsonify({"input" : num, "output" : l})
 
 # Runs the Flask application
