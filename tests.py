@@ -40,17 +40,17 @@ test_list = [
      '{"input":"hello_world","output":"99b1ff8f11781541f7f89f9bd41c4a17"}',
      200),
     ("/factorial/5",
-      '{"input":5,"output":120}',
-      200),
-      ("/factorial/$6",
-       "",
-       404),
-       ("/fibonacci/8",
-        '{"input":8,"output":[0,1,1,2,3,5,8]}',
-        200),
-        ("/fibonacci/eight",
-         "",
-         404)
+     '{"input":5,"output":120}',
+     200),
+    ("/factorial/$6",
+     "",
+     404),
+    ("/fibonacci/8",
+     '{"input":8,"output":[0,1,1,2,3,5,8]}',
+     200),
+    ("/fibonacci/eight",
+     "",
+     404)
 ]
 
 for test in test_list:
