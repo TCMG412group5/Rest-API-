@@ -85,15 +85,15 @@ def factorial(num):
 # Route for fib seqeunce
 @app.route("/fibonacci/<int:num>", methods=['GET'])
 def fib(num):
-    l = []
+    fib_list = []
     a = 0
     b = 1
     while a <= num:
-        l.append(a)
+        fib_list.append(a)
         a, b = b, a+b
-    return jsonify({"input": num, "output": l})
+    return jsonify({"input": num, "output": fib_list})
 
 
 # Runs the Flask application
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=4000)
+    app.run(host='0.0.0.0', port=4000)
