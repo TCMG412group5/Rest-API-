@@ -4,7 +4,7 @@
 This repo will be used for the rest of the semester.
 
 ## Instructions
-To access the endpoints, run the Flask.py program using `python3 Flask.py`.  Then, using a browser or a program like [Postman](https://www.postman.com/ "Postman"), type this URL http://localhost:5000/[Endpoint]/[Argument].
+To access the endpoints, run the Flask.py program using `python3 Flask.py`.  Then, using a browser or a program like [Postman](https://www.postman.com/ "Postman"), type this URL http://localhost:4000/[Endpoint]/[Argument].
 
 ## Endpoints:
 - **/md5/[string]** - returns the MD5 hash of the string that is passed as the input
