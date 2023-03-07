@@ -53,9 +53,19 @@ test_list = [
      404)
 ]
 
+tests_failed = False
 for test in test_list:
     try:
         test_endpoint(*test)
     except SystemExit as e:
         if e != 0:
-            pass
+            test_failure = True
+
+if tests_failed == True:
+    print()
+    print("A test case failed - Exit Code 1")
+    sys.exit(1)
+else:
+    print()
+    print("All test cases passed - Exit Code 0")
+    sys.exit(0)
