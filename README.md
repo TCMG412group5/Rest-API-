@@ -3,6 +3,9 @@
 
 This repo will be used for the rest of the semester.
 
+## Docker Repo
+https://hub.docker.com/r/juliandeplano/group5
+
 ## Instructions
 To access the endpoints, run the Flask.py program using `python3 Flask.py`.  Then, using a browser or a program like [Postman](https://www.postman.com/ "Postman"), type this URL http://localhost:4000/[Endpoint]/[Argument].
 
