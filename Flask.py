@@ -2,6 +2,7 @@
 from flask import Flask, jsonify
 from hashlib import md5
 import requests
+import os
 
 app = Flask(__name__)
 
@@ -49,13 +50,24 @@ def get_isprime(data=""):
 # Route for the /slack-alert endpoint
 @app.route("/slack-alert/<string:data>", methods=["GET"])
 def slack_alert(data=""):
-    # Returns a 400 error if there's no input
+    # Returns a 404 error if there's no input
     if data == "":
-        return jsonify({"input": data, "output": False}), 400
+        return jsonify({"input": data, "output": False}), 404
 
     else:
+        # Searches for the file name starting from the root directory
+        directory = os.path.abspath(os.path.dirname(__file__))
+        while True:
+            file_path = os.path.join(directory, "web_hook.txt")
+            if os.path.exists(file_path):
+                break
+            parent = os.path.dirname(directory)
+            if parent == directory:
+                raise FileNotFoundError(f"File web_hook.txt not found.")
+            directory = parent
+        
         # Uses the webhook url from web_hook.txt
-        slack_webhook = open("web_hook.txt", "r").read().replace('\n', '')
+        slack_webhook = open(file_path, "r").read().replace('\n', '')
         message = str({"text": data})
 
         # Sends a post request to the webhook url with the message payload
