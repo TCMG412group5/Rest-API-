@@ -49,6 +49,10 @@ test_list = [
     ("/md5/5um",
      '{"input":"5um","output":"13db2c82a7b5cbdd32a5b7ead600f503"}',
      200),
+    # MD5 Test Case 5
+    ("/md5/Here's a bunch of symbols! %21%40%23%24%25%5E%26%2A%28%29%3A%22%7B%7D%3F%3E%3C%7C%3A%3B",
+     '{"input":"Here\'s a bunch of symbols! !@#$%^&*():\\"{}?><|:;","output":"3e53f4a1455d43bd7170af23791bc57a"}',
+     200),
     # is-prime Test Case 1
     ("/is-prime/5",
      '{"input":5,"output":true}',
@@ -65,6 +69,10 @@ test_list = [
     ("/is-prime/7",
      '{"input":7,"output":true}',
      200),
+    # is-prime Test Case 5
+    ("/is-prime/3.14",
+     '',
+     404),
     # factorial Test Case 1
     ("/factorial/5",
      '{"input":5,"output":120}',
@@ -81,6 +89,10 @@ test_list = [
     ("/factorial/7",
      '{"input":7,"output":5040}',
      200),
+    # factorial Test Case 5
+    ("/factorial/0.5",
+     '',
+     404),
     # fibonacci Test Case 1
     ("/fibonacci/8",
      '{"input":8,"output":[0,1,1,2,3,5,8]}',
@@ -97,7 +109,30 @@ test_list = [
     ("/fibonacci/41",
      '{"input":41,"output":[0,1,1,2,3,5,8,13,21,34]}',
      200),
+    # fibonacci Test Case 5
+    ("/fibonacci/01.01.2023",
+     '',
+     404),
     # slack-alert Test Case 1
+    ("/slack-alert/",
+     '',
+     404),
+    # slack-alert Test Case 2
+    ('/slack-alert/this is a test',
+     '{"input":"this is a test","output":true}',
+     200),
+    # slack-alert Test Case 3
+    ('/slack-alert/%21%40%23%24%25%5E%26%2A%28%29%3A%22%7B%7D%3F%3E%3C%7C%3A%3B',
+     '{"input":"!@#$%^&*():"{}?><|:;","output":true}',
+     200),
+    # slack-alert Test Case 4
+    ('/slack-alert/12',
+     '{"input":"12","output":true}',
+     200), 
+    # slack-alert Test Case 5
+    ('/slack-alert/3.14',
+     '{"input":"3.14","output":true}',
+     200) 
 ]
 
 
