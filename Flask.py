@@ -106,6 +106,38 @@ def fib(num):
     return jsonify({"input": num, "output": fib_list})
 
 
+@app.route("/keyval", methods=['POST', 'PUT'])
+# The CREATE (POST) action: this endpoint will write a new key-value pair into the Redis database.
+# Input payload:   { "storage-key": "new key", "storage-val": "new value" }
+# Status codes:     200 Success
+#                   400 Invalid request (i.e., invalid JSON)
+#                   409 Key already exists
+
+# The UPDATE (PUT) action: this endpoint will overwrite the value on an existing key.
+# Input payload:   { "storage-key": "existing key", "storage-val": "new value" }
+# Status codes:     200 Success
+#                       400 Invalid request (i.e., invalid JSON)
+#                       404 Key does not exist
+def keyval_post():
+    return()
+def keyval_put():
+    return()
+
+@app.route("/keyval/<string:data>", methods=['GET', 'DELETE'])
+# The READ action: this endpoint will retrieve the value associated with the key supplied in the URL.
+# Status codes:     200 Success
+#                       400 Invalid request (i.e., invalid JSON)
+#                       404 Key does not exist
+
+# The DELETE action: this endpoint will delete the key (and value) supplied in the URL.
+# Status codes:     200 Success
+#                       400 Invalid request (i.e., invalid JSON)
+#                       404 Key does not exist
+def keyval_get():
+    return()
+def keyval_delete():
+    return()
+
 # Runs the Flask application
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4000)
